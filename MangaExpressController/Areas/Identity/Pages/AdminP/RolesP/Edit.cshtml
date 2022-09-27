@@ -1,0 +1,42 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.AdminP.RolesP.EditModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Rol.Id" />
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Rol.Name" class="control-label">Nombre</label>
+                <input asp-for="Rol.Name" class="form-control" />
+                <span asp-validation-for="Rol.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Rol.Descripcion" class="control-label">Descripción</label>
+                <input asp-for="Rol.Descripcion" class="form-control" type="number" />
+                <span asp-validation-for="Rol.Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Rol.NormalizedName" class="control-label">Nombre normalizado</label>
+                <input asp-for="Rol.NormalizedName" class="form-control" />
+                <span asp-validation-for="Rol.NormalizedName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+
+
+</form>

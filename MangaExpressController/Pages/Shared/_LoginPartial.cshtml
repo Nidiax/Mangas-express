@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Manga.Models;
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("UsuarioCompra"))
+    {
+
+        <li class="nav-item float-right" style="float:right;">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/CarritoUsuarioP/CarritoM" title="Manage"><i class="fas fa-shopping-cart fa-2x"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hola @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Cerrar Sesión</button>
+            </form>
+        </li>
+    }
+    else if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrador"))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Bienvenido @User.Identity.Name!</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/AdminP/IndexAdmin" title="Manage">Administrar</a>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Cerrar Sesión</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Regístrate</a>
+        </li>
+        <li class="nav-link">
+            <p>|</p>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
+        </li>
+    }
+</ul>
+
+

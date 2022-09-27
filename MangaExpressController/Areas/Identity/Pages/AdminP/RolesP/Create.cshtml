@@ -1,0 +1,70 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.AdminP.RolesP.CreateModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<h1>Registra un Rol</h1>
+<br />
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div style="text-align:center;" class="m-2">
+        <img src="" alt="Alternate Text" id="preview" width="200" />
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Rol.Name" class="control-label">Nombre</label>
+                <input asp-for="Rol.Name" class="form-control" />
+                <span asp-validation-for="Rol.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Rol.Descripcion" class="control-label"></label>
+                <input asp-for="Rol.Descripcion" class="form-control" />
+                <span asp-validation-for="Rol.Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+        <a class="btn btn-danger" asp-page="Index">Regresar</a>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            var fileInput = document.getElementsByClassName('custom-file-input')[0]
+            var fileInputLabel = document.getElementsByClassName('custom-file-label')[0]
+            var imagePreview = document.getElementById('preview')
+            imagePreview.hidden = true
+            var reader = new FileReader()
+
+            fileInput.addEventListener('change', (event) => {
+                var fileName = fileInput.value.split("\\").pop()
+                fileInputLabel.innerHTML = fileName
+                reader.readAsDataURL(event.target.files[0])
+                reader.onloadend = function (event) {
+                    imagePreview.src = reader.result
+                    if (reader.result == '')
+                        imagePreview.hidden = true
+                    imagePreview.hidden = false
+                    imagePreview.hidden = false
+
+                }
+
+            })
+
+        });
+    </script>
+}

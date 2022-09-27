@@ -1,0 +1,40 @@
+﻿@page "{handler?}"
+@model MangaExpressController.Areas.Identity.Pages.AdminP.MangasP.IndexModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="float-right mb-3">
+    <a asp-page="Create" class="btn btn-primary">Crear un manga</a>
+
+</div>
+
+<table class="table table-hover">
+    <thead class="table-info">
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Autor</th>
+            <th>Marca</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var manga in Model.MangaM)
+        {
+            <tr>
+                <td>@manga.Nombre</td>
+                <td>@manga.Precio</td>
+                <td class="col-5">@(manga.Descripcion.Length>200?manga.Descripcion.Substring(0,150)+"...": manga.Descripcion)</td>
+                <td>@manga.Autor</td>
+                <td>@manga.Marca</td>
+                <td><img src="@(string.IsNullOrEmpty(manga.Imagen)? Url.Content($"~/images/NoImage.png") :Url.Content($"~/images/{manga.Imagen}"))" alt="Imagen Manga" width="60" /></td>
+                <td><a class="btn btn-sm btn-primary details" asp-page="Edit" asp-route-id="@manga.Id" >Editar</a> | <a asp-page-handler="Status" asp-route-id="@manga.Id" asp-route-status="@(!manga.Estatus)" class="btn btn-sm btn-danger">@(manga.Estatus? "Desactivar":"Activar")</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

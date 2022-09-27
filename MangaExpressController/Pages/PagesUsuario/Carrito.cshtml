@@ -1,0 +1,80 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using Manga.Models;
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+
+@model MangaExpressController.Pages.PagesUsuario.CarritoModel
+@{
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MangaExpress</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/mangas.css">
+</head>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">MangaExpress</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/PageUsuario/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Cerrar Cesion</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                    </li>
+
+
+
+                </ul>
+                <p class="ms-auto navbar-text actions"> </p>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<body>
+
+
+    <div id="placeholderhere"></div>
+
+    <div class="single-product-area">
+        <div class="container">
+            <div class="row">
+                @foreach (var manga in Model.Mangas)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-shop-product">
+                            <div>
+                                <img class="product-image" src="@manga.Nombre" alt="">
+                            </div>
+                            <h2><button class="btn nav-link" style="text-decoration:underline;" data-toggle="ajax-modal" data-target="#details" data-url="@Url.Action("Details")" data-id="@manga.Id" name="@manga.Id">@manga.Nombre</button>@manga.Id</h2>
+                            <div class="product-carousel-price">
+                                <ins>$ @manga.Precio</ins>
+                            </div>
+                            <br />
+                            <div class="product-option-shop">
+                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</body>

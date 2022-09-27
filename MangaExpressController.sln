@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangaExpressController", "MangaExpressController\MangaExpressController.csproj", "{FE7EE452-BC65-46B4-A118-96628F608905}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manga.Models", "Manga.Models\Manga.Models.csproj", "{1DF1A56F-1FE2-4D79-9600-B9D6494B4DEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE7EE452-BC65-46B4-A118-96628F608905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7EE452-BC65-46B4-A118-96628F608905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7EE452-BC65-46B4-A118-96628F608905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7EE452-BC65-46B4-A118-96628F608905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DF1A56F-1FE2-4D79-9600-B9D6494B4DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF1A56F-1FE2-4D79-9600-B9D6494B4DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF1A56F-1FE2-4D79-9600-B9D6494B4DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF1A56F-1FE2-4D79-9600-B9D6494B4DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12A9E486-2A53-4E9A-A912-8C4C3E01F315}
+	EndGlobalSection
+EndGlobal

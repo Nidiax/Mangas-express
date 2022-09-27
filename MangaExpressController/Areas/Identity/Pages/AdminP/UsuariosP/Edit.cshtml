@@ -1,0 +1,41 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.AdminP.UsuariosP.EditModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Usuario.Id" />
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Usuario.UserName" class="control-label">Nombre</label>
+                <input asp-for="Usuario.UserName" class="form-control" />
+                <span asp-validation-for="Usuario.UserName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Usuario.Email" class="control-label">Correo</label>
+                <input asp-for="Usuario.Email" class="form-control" type="number" />
+                <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Usuario.EmailConfirmed" class="control-label">Confirmacón de correo</label>
+                <input asp-for="Usuario.EmailConfirmed" class="form-control" />
+                <span asp-validation-for="Usuario.EmailConfirmed" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+
+
+</form>

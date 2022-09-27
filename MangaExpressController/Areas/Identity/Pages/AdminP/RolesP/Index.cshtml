@@ -1,0 +1,39 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.AdminP.RolesP.IndexModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="float-right mb-3">
+    <a asp-page="Create" class="btn btn-primary">Crear un rol</a>
+
+</div>
+
+<table class="table table-hover">
+    <thead class="table-info">
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Opciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rol in Model.Rol)
+        {
+            <tr>
+                <td>@rol.Name</td>
+                <td>@rol.Descripcion</td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary details" asp-page="./Edit" asp-route-id="@rol.Id">Edit</a> |
+                    <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@rol.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

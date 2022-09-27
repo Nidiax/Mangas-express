@@ -1,0 +1,103 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.CarritoUsuarioP.CarritoMModel
+@{
+    double precio = 0;
+    int cantidad = 0;
+    double subtotal = 0;
+    double total = 0;
+    int count = 0;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MangaExpress</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/mangas.css">
+    <link href="~/css/carrito.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="main" style="margin-bottom: 350px;">
+        <h1>Carrito de compras</h1>
+        <h2 class="sub-heading">Manga Express</h2>
+
+        <section class="shopping-cart">
+            <ol class="ui-list shopping-cart--list" id="shopping-cart--list">
+                @foreach (var manga in Model.lista)
+                {
+                    count++;
+                    precio = manga.Manga.Precio;
+                    <li class="_grid shopping-cart--list-item">
+                        <div class="_column product-image">
+                            <img style="width: 160px;height: 160px;" class="product-image--img"  src="@(string.IsNullOrEmpty(manga.Manga.Imagen)? Url.Content($"~/images/NoImage.png") :Url.Content($"~/images/{manga.Manga.Imagen}"))" alt="Item image" />
+                        </div>
+                        <div class="_column product-info">
+                            <h4 class="product-name" style="font-size: 30px; color: cornflowerblue;">@manga.Manga.Nombre</h4>
+                            <p class="product-desc" style="font-size: 15px;">@manga.Manga.Marca</p>
+                            <div class="price product-single-price" style="color: #1abc9c;font-size: 25px;">Precio: $ @manga.Manga.Precio</div>
+                        </div>
+                        <div class="_column product-modifiers" data-product-price="40.00">
+                            <div class="_grid">
+                                <button class="_btn _column product-subtract" onclick="resetCounter(@count,@precio)">−</button>
+                                <div id="counter-label-@count" class="_column product-qty">1</div>
+                                <button class="_btn _column product-plus" onclick="incrementClick(@count,@precio)">+</button>
+                            </div>
+                            <form method="post">
+                                @*<input hidden asp-for="Manga.MID" value="@manga.Manga.Id" />*@ <!--UNO DEL MANGA QUE ESTA CONSULTANDO EL DETALLE -->
+                                <input type="hidden" asp-for="Manga.MID" value="@manga.MID" />
+                                <div>
+                                    <input type="submit" class="_btn entypo-trash product-remove" value="Eliminar" />
+                                </div>
+                            </form>
+                            <div id="subt-@count" class="subtotal price product-total-price">$@precio</div>
+                        </div>
+                    </li>
+                    total += precio;
+                }
+            </ol>
+        </section>
+        <footer class="_grid cart-totals">
+            <div class="_column total" id="totalCtr">
+                <div class="cart-totals-key">Total de su compra</div>
+                <h4 id="total" style="color:dodgerblue;">$@total</h4>
+            </div>
+            <div class="_column checkout">
+                <input type="button" class="_btn checkout-btn entypo-forward" value="Comprar" />
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        var counterVal;
+        var subtotal;
+
+        function incrementClick(count, precio) {
+            counterVal = document.getElementById("counter-label-" + count).innerHTML;//obtener valor de cantidad
+            updateDisplay(++counterVal, count, precio);//llamar metodo
+        }
+
+        function resetCounter(count, precio) {
+            if (counterVal > 1) {
+                counterVal = document.getElementById("counter-label-" + count).innerHTML;//obtener valor de cantidad
+                updateDisplay(--counterVal, count, precio);//llamar metodo
+            }
+        }
+
+        function updateDisplay(val, count, precio) {
+            document.getElementById("counter-label-" + count).innerHTML = val;//asignar valor de cantidad
+            subtotal = precio * counterVal; //sacar valor del subtotal
+            document.getElementById("subt-" + count).innerHTML = "$" + subtotal;//asignar valor de subtotal
+            var elementos = document.getElementsByClassName("subtotal");//obtener valores de subtotales
+            let total = 0;
+
+            for (let item of elementos) {// recorrer lista de subtotales
+                var regex = /(\d+)/g;//indica que solo busco numeros \d e indica que busca en toda la cadena /g
+                total = total + parseInt(item.innerHTML.match(regex));//se suman los valores obtenidos de subtotales
+            }
+            document.getElementById("total").innerHTML = "$" + total;//se asigna valor de total
+        }
+    </script>
+
+</body>
+
+

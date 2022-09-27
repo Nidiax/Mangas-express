@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/mangas.css">
+</head>
+
+@if (!Model.search) { 
+<div class="container-fluid text-center mb-4" >
+    <div class="customCarousel">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/images/carrusel.jpg" class="d-block w-100 same " alt="Imagen Carrusel 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/carrusel2.jpg" class="d-block w-100 same" alt="Imagen Carrusel 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/carrusel3.jpg" class="d-block w-100 same" alt="Imagen Carrusel 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/carrusel4.jpg" class="d-block w-100 same" alt="Imagen Carrusel 4">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+}
+<div class="single-product-area">
+    <div class="container">
+        <div class="row" style="margin-bottom: 200px;">
+            <h1 class="text-center">Mangas</h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            @foreach (var manga in Model.Mangas)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div>
+                            <img class="product-image" src="@(string.IsNullOrEmpty(manga.Imagen)? Url.Content($"~/images/NoImage.png") :Url.Content($"~/images/{manga.Imagen}"))" alt="">
+                        </div>
+                        <h2><button class="btn nav-link" style="text-decoration:none;" data-toggle="ajax-modal" data-target="#details" data-url="@Url.Action("Details")" data-id="@manga.Id" name="@manga.Id">@manga.Nombre</button></h2>
+                        <div class="product-carousel-price">
+                            <ins>$ @manga.Precio</ins>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

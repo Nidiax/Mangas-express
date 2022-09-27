@@ -1,0 +1,88 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.CrudManga1.DetailsMangaModel
+@using Microsoft.AspNetCore.Identity
+@using Manga.Models;
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+    <div>
+        <h4>MangaM</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Id)
+            </dt>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Precio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Precio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Descripcion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Autor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Autor)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Marca)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Marca)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Imagen)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Imagen)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MangaM.Estatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MangaM.Estatus)
+            </dd>
+
+        </dl>
+        <form method="post">
+
+            <input hidden asp-for="MangaUsuario.MID" value="@Model.MangaM.Id" /> <!--UNO DEL MANGA QUE ESTA CONSULTANDO EL DETALLE -->
+
+            <div class="form-group">
+                <input type="submit" value="Agregar al carrito" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.MangaM.Id">Edit</a> |
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</body>
+</html>

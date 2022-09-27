@@ -1,0 +1,49 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.CarritoUsuarioP.DetailsModel
+@{
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/mangas.css">
+    <link rel="stylesheet" href="~/css/details.css">
+</head>
+
+<div class="container">
+    <div class="row" style="margin-bottom: 300px;">
+        <div class="col-4"  >
+            <img id="image" src="@(string.IsNullOrEmpty(Model.MangaM.Imagen)? Url.Content($"~/images/NoImage.png") :Url.Content($"~/images/{Model.MangaM.Imagen}"))" alt="Imagen Manga" width="250" height="320" />
+        </div>
+
+        <div class="col-6">
+            <div class="row">
+                <h3>@Model.MangaM.Nombre</h3>
+            </div>
+            <div class="row">
+                <h5 class="h5">$@Model.MangaM.Precio</h5>
+            </div>
+            <div class="row">
+                <p>@Model.MangaM.Descripcion</p>
+            </div>
+            <div class="row">
+                <h5>Autor: @Model.MangaM.Autor</h5>
+            </div>
+            <div class="row">
+                <form method="post">
+
+                    <input hidden asp-for="MangaUsuario.MID" value="@Model.MangaM.Id" /> <!--UNO DEL MANGA QUE ESTA CONSULTANDO EL DETALLE -->
+
+                    <div class="form-group">
+                        <input type="submit" value="Agregar al carrito" class="btn btn-primary" />
+                    </div>
+                </form>
+                
+            </div>
+
+
+        </div>
+    </div>
+</div>

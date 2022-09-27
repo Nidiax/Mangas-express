@@ -1,0 +1,23 @@
+﻿
+
+#btn-compra {
+    width: 30% !important;
+    color: white;
+    margin: 0px 0px 8px;
+}
+
+.h5{
+    color:red;
+}
+
+#image{
+    position: relative;
+    padding: 20px 0;
+    margin: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid black;
+    overflow: hidden;
+
+}

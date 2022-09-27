@@ -1,0 +1,95 @@
+﻿@page
+@model MangaExpressController.Areas.Identity.Pages.AdminP.MangasP.CreateModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Registra un Manga</h1>
+<br />
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div style="text-align:center;" class="m-2">
+        <img src="" alt="Alternate Text" id="preview" width="200" />
+    </div>
+    <div class="row">
+        <div class="form-group col-md-10" style="text-align:center;">
+            <label asp-for="Imagen" class="custom-file-label"></label>
+            <input asp-for="Imagen" class="custom-file-input form-control" type="file" accept="image/png, image/gif, image/jpeg" />
+            <span asp-validation-for="Imagen" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="MangaM.Nombre" class="control-label"></label>
+                <input asp-for="MangaM.Nombre" class="form-control" />
+                <span asp-validation-for="MangaM.Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="MangaM.Precio" class="control-label"></label>
+                <input asp-for="MangaM.Precio" class="form-control" type="number" />
+                <span asp-validation-for="MangaM.Precio" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="MangaM.Autor" class="control-label"></label>
+                <input asp-for="MangaM.Autor" class="form-control" />
+                <span asp-validation-for="MangaM.Autor" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="MangaM.Marca" class="control-label"></label>
+                <input asp-for="MangaM.Marca" class="form-control" />
+                <span asp-validation-for="MangaM.Marca" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Descripción</label>
+                <textarea asp-for="MangaM.Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="MangaM.Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+        <a class="btn btn-danger" asp-page="Index">Regresar</a>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+        var fileInput = document.getElementsByClassName('custom-file-input')[0]
+        var fileInputLabel = document.getElementsByClassName('custom-file-label')[0]
+        var imagePreview = document.getElementById('preview')
+        imagePreview.hidden=true
+        var reader = new FileReader()
+
+        fileInput.addEventListener('change', (event) => {
+            var fileName = fileInput.value.split("\\").pop()
+            fileInputLabel.innerHTML = fileName
+            reader.readAsDataURL(event.target.files[0])
+            reader.onloadend = function (event) {
+                imagePreview.src = reader.result
+                if (reader.result == '')
+                    imagePreview.hidden = true
+                imagePreview.hidden = false
+               
+
+            }
+
+        })
+
+    });
+</script>
+}
+
