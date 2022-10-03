@@ -30,19 +30,26 @@ namespace MangaExpressController.Areas.Identity.Pages.AdminP.MangasP
             HostEnvoriment = webHostEnvironment;
         }
 
+        public CreateModel()
+        {
+        }
+
         public IActionResult OnGet()
         {
             return Page();
         }
 
 
-       public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
+           //var modelrespuesta = ValidateModel(MangaM);
+           var respuesta = ValidateExistImage(MangaM.Imagen);
 
             if (!ModelState.IsValid)
                 return Page();
-            if (Imagen != null)
+            if (respuesta == true)
             {
+
                 if (!string.IsNullOrEmpty(MangaM.Imagen))
                 {
                     var filePath = Path.Combine(HostEnvoriment.WebRootPath, "images", MangaM.Imagen);
@@ -52,16 +59,41 @@ namespace MangaExpressController.Areas.Identity.Pages.AdminP.MangasP
                 MangaM.Imagen = ProcessUploadFile();
             }
 
+             _context.Mangas.Add(MangaM);
+                await _context.SaveChangesAsync();
             
-            _context.Mangas.Add(MangaM);
-            await _context.SaveChangesAsync();
+            
+          
 
             return RedirectToPage("./Index");
         }
 
+
+
+        public bool ValidateExistImage(string Image)
+        {
+
+           if(Image != null)
+            {
+                return true;
+            }
+            
+           return false;
+           
+        }
+
+
+        public bool ValidateInputs(int precio, string Nombre, string Descripcion)
+        {
+            if (precio != 0 && Nombre != "" && Descripcion != "")
+            {
+                return true;
+            }
+
+            return false;
+        }
+           
        
-
-
         private string ProcessUploadFile()
         {
             if (Imagen == null)
