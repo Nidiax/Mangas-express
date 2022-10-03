@@ -24,7 +24,7 @@ namespace MangaExpressController.Areas.Identity.Pages.AdminP.MangasP
 
         public async Task OnGetAsync()
         {
-            MangaM = await _context.Mangas.Where(m=>m.Estatus).ToListAsync();
+            MangaM = await _context.Mangas.ToListAsync();
         }
         
 

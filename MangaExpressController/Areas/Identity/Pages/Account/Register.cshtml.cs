@@ -85,7 +85,7 @@ namespace MangaExpressController.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
                     
-                    await _userManager.AddToRoleAsync(user, "USUARIOCOMPRA"); 
+                    await _userManager.AddToRoleAsync(user, "Administrador"); 
                 }
                 foreach (var error in result.Errors)
                 {
