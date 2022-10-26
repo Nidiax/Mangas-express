@@ -30,9 +30,6 @@ namespace MangaExpressController.Areas.Identity.Pages.AdminP.MangasP
             HostEnvoriment = webHostEnvironment;
         }
 
-        public CreateModel()
-        {
-        }
 
         public IActionResult OnGet()
         {
