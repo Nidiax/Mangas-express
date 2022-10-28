@@ -30,8 +30,7 @@ namespace MangaExpressController.Data.Migrations
                 name: "Descripcion",
                 table: "AspNetRoles",
                 maxLength: 100,
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Mangas",

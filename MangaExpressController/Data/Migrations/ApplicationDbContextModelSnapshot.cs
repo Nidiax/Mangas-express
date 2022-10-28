@@ -82,7 +82,6 @@ namespace MangaExpressController.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
                         .IsUnicode(true);
